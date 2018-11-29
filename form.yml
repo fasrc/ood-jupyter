@@ -48,6 +48,9 @@ attributes:
   custom_reservation:
     label: Reservation
     widget: text_field
+  bc_account:
+    label: "Slurm Account"
+    help: "If you are not in multiple labs please leave this blank."
 
 # All of the attributes that make up the Dashboard form (in respective order),
 # and made available to the submit configuration file and the template ERB
@@ -61,7 +64,6 @@ attributes:
 form:
   - modules
   - extra_jupyter_args
-  - bc_account
   - bc_queue
   - bc_num_hours
   - bc_email_on_started
@@ -69,3 +71,4 @@ form:
   - custom_memory_per_node
   - custom_num_cores
   - custom_reservation
+  - bc_account
