@@ -5,8 +5,8 @@ attributes:
   modules: null
   extra_jupyter_args: ""
   bc_num_hours:
-    value:  6
-    min:    4
+    value:  4
+    min:    2
     step:   2
     max:    12
   bc_queue: "ncf_holy"
@@ -15,7 +15,7 @@ attributes:
     widget: text_field
   custom_memory_per_node:
     label: Memory Allocation in GB
-    value: 1
+    value: 4
     min:   1
     step:  1
     max:   120
