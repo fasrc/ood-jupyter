@@ -4,7 +4,6 @@ category: Interactive Apps
 subcategory: Servers
 role: batch_connect
 description: |
-  This app will launch [Jupyter Notebook] on [Odyssey3]:
+  This app will launch [Jupyter Notebook] on the ncf_holy partition on the NCF cluster:
 
   [Jupyter Notebook]:  http://jupyter.org
-  [Odyssey3]: https://www.rc.fas.harvard.edu/resources/odyssey-architecture/
