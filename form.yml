@@ -1,49 +1,33 @@
-# Batch Connect app configuration file
-#
-# @note Used to define the submitted cluster, title, description, and
-#   hard-coded/user-defined attributes that make up this Batch Connect app.
 ---
-
-# **MUST** set cluster id here that matches cluster configuration file located
-# under /etc/ood/config/clusters.d/*.yml
-# @example Use the Owens cluster at Ohio Supercomputer Center
-#     cluster: "owens"
+title: "Jupyter notebook"
 cluster: "odyssey3"
-
-# Define attribute values that aren't meant to be modified by the user within
-# the Dashboard form
 attributes:
-  # Set the corresponding modules that need to be loaded for Jupyter to run
-  #
-  # @note It is called within the batch job as `module load <modules>` if
-  #   defined
-  # @example Do not load any modules
-  #     modules: ""
-  # @example Using default python module
-  #     modules: "python"
-  # @example Using specific python module
-  #     modules: "python/3.5"
-  # @example Using combination of modules
-  #     modules: "python/3.5 cuda/8.0.44"
   modules: null
-
-  # Any extra command line arguments to feed to the `jupyter notebook ...`
-  # command that launches the Jupyter notebook within the batch job
   extra_jupyter_args: ""
   bc_num_hours:
-    value: 4
-  bc_queue:
-    value: "general"
+    value:  4
+    min:    2
+    step:   2
+    max:    24
+  bc_queue: 
+    value: "shared"
   custom_email_address:
-    label: email for status notification
+    label: email address for status notification
     widget: text_field
   custom_memory_per_node:
-    label: Memory per node
-    value: 2000
-    widget: text_field
+    label: Memory Allocation in GB
+    value: 4
+    min:   1
+    step:  1
+    max:   120
+    widget: number_field
   custom_num_cores:
     label: Number of cores
-    value: 2
+    value: 1
+    min:   1
+    step:  1
+    max:   32
+    widget: number_field
     help: "Number of Cpus to allocate"
   custom_reservation:
     label: Reservation
@@ -52,23 +36,14 @@ attributes:
     label: "Slurm Account"
     help: "If you are not in multiple labs please leave this blank."
 
-# All of the attributes that make up the Dashboard form (in respective order),
-# and made available to the submit configuration file and the template ERB
-# files
-#
-# @note You typically do not need to modify this unless you want to add a new
-#   configurable value
-# @note If an attribute listed below is hard-coded above in the `attributes`
-#   option, then it will not appear in the form page that the user sees in the
-#   Dashboard
 form:
   - modules
   - extra_jupyter_args
   - bc_queue
+  - custom_memory_per_node
+  - custom_num_cores
   - bc_num_hours
   - bc_email_on_started
   - custom_email_address
-  - custom_memory_per_node
-  - custom_num_cores
   - custom_reservation
   - bc_account
