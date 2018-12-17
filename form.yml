@@ -8,8 +8,9 @@ attributes:
     value:  4
     min:    2
     step:   2
-    max:    12
-  bc_queue: "ncf_holy"
+    max:    24
+  bc_queue: 
+    value: "shared"
   custom_email_address:
     label: email address for status notification
     widget: text_field
@@ -28,6 +29,9 @@ attributes:
     max:   32
     widget: number_field
     help: "Number of Cpus to allocate"
+  custom_reservation:
+    label: Reservation
+    widget: text_field
   bc_account:
     label: "Slurm Account"
     help: "If you are not in multiple labs please leave this blank."
@@ -41,4 +45,5 @@ form:
   - bc_num_hours
   - bc_email_on_started
   - custom_email_address
+  - custom_reservation
   - bc_account
