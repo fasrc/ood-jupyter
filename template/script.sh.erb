@@ -23,10 +23,31 @@ module list
 
 # Benchmark info
 echo "TIMING - Starting jupyter at: $(date)"
+export container_image=/n/helmod/apps/centos7/Singularity/jupytherhub/0.9.4/jupyterhub-0.9.4-singleuser_python-3.6.5-el7-7.4.1708.img
 
 # Launch the Jupyter Notebook Server
-set -x
 
-container_image=/n/helmod/apps/centos7/Singularity/jupytherhub/0.9.0b3-rstudio3.4.3/jupyterhub-singleuser
+# enable this only if needed for debug purpose. note that the password will appear in the output 
+# set -x
 
-singularity exec $container_image  jupyter notebook --config="${CONFIG_FILE}" <%= context.extra_jupyter_args %>
+export SING_GPU=""
+
+<%- if !context.custom_num_gpus.to_i.zero? -%>
+export SING_GPU="--nv"
+<%- end -%>
+
+## For some reason if I use the config.py file to configure the notebook, the package nb_conda_kernels does not seem to work correctly.
+#  I will temporarily pass those attributes as command line arguments 
+#singularity exec $SING_GPU  $container_image  jupyter notebook --config="${CONFIG_FILE}" 
+#
+singularity exec $SING_GPU  $container_image  jupyter notebook \
+           --ip='0.0.0.0' \
+           --port=${MY_JUP_PORT} \
+           --port-retries=0 \
+           --NotebookApp.password="${MY_JUP_PASSWD}" \
+           --NotebookApp.base_url="${MY_JUP_BASEURL}" \
+           --no-browser \
+           --NotebookApp.allow_origin='*' \
+           --notebook-dir="$HOME"  \
+           --NotebookApp.disable_check_xsrf=True
+

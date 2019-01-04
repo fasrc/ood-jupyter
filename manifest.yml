@@ -1,5 +1,5 @@
 ---
-name: Jupyter Notebook
+name: Jupyter Notebook Devel
 category: Interactive Apps
 subcategory: Servers
 role: batch_connect
