@@ -5,7 +5,7 @@ attributes:
   modules: null
   extra_jupyter_args: ""
   custom_time:
-    label: "Allocated Time (expressed in MM , or HH:MM:SS , or DD-HH:MM). Maximum for this partition is 7 days"
+    label: "Allocated Time (expressed in MM , or HH:MM:SS , or DD-HH:MM)."
     value: "04:00:00"
     widget: text_field
   bc_queue: 
