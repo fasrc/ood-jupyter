@@ -4,7 +4,7 @@ category: Interactive Apps
 subcategory: Servers
 role: batch_connect
 description: |
-  This app will launch [Jupyter Notebook] on the a compute node on the  [Odyssey3] cluster:
+  This app will launch [Jupyter Notebook] on a compute node on the  [Odyssey3] cluster:
 
   [Jupyter Notebook]:  http://jupyter.org
   [Odyssey3]: https://www.rc.fas.harvard.edu/resources/odyssey-architecture/
