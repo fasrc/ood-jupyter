@@ -45,7 +45,7 @@ export CONFIG_FILE="${PWD}/config.py"
 (
 umask 077
 cat > "${CONFIG_FILE}" << EOL
-c.NotebookApp.ip = '*'
+c.NotebookApp.ip = '0.0.0.0'
 c.NotebookApp.port = ${port}
 c.NotebookApp.port_retries = 0
 c.NotebookApp.password = u'sha1:${SALT}:${PASSWORD_SHA1}'
@@ -56,3 +56,12 @@ c.NotebookApp.notebook_dir = '${HOME}'
 c.NotebookApp.disable_check_xsrf = True
 EOL
 )
+
+## For some reason if I use the config.py file to configure the notebook, the package nb_conda_kernels does not seem to work correctly.
+#  I will temporarily pass those attributes as command line arguments 
+export MY_JUP_PORT=${port}
+export MY_JUP_PASSWD=sha1:${SALT}:${PASSWORD_SHA1}
+export MY_JUP_BASEURL=/node/${host}/${port}/
+
+
+
