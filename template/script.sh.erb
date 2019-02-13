@@ -36,11 +36,15 @@ export SING_GPU=""
 export SING_GPU="--nv"
 <%- end -%>
 
+## bind some extra stuff to be able to talk to slurm from within the container
+export SING_BINDS=" -B /etc/nsswitch.conf -B /etc/sssd/ -B /var/lib/sss -B /etc/slurm -B /slurm -B /var/run/munge "
+
 ## For some reason if I use the config.py file to configure the notebook, the package nb_conda_kernels does not seem to work correctly.
 #  I will temporarily pass those attributes as command line arguments 
 #singularity exec $SING_GPU  $container_image  jupyter notebook --config="${CONFIG_FILE}" 
 #
-singularity exec $SING_GPU  $container_image  jupyter notebook \
+
+singularity exec $SING_GPU $SING_BINDS $container_image  jupyter notebook \
            --ip='0.0.0.0' \
            --port=${MY_JUP_PORT} \
            --port-retries=0 \
