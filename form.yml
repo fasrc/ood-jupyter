@@ -18,14 +18,14 @@ attributes:
     value: 4
     min:   1
     step:  1
-    max:   120
+    max:   256
     widget: number_field
   custom_num_cores:
     label: Number of cores
     value: 1
     min:   1
     step:  1
-    max:   32
+    max:   64
     widget: number_field
     help: "Number of Cpus to allocate"
   custom_num_gpus:
