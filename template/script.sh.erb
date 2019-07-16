@@ -44,15 +44,15 @@ export SING_BINDS=" -B /etc/nsswitch.conf -B /etc/sssd/ -B /var/lib/sss -B /etc/
 #singularity exec $SING_GPU  $container_image  jupyter notebook --config="${CONFIG_FILE}" 
 #
 
-cat > jupyter.script.sh <<EOF1
+cat > $JOBROOT/jupyter.script.sh <<EOF1
 #!/bin/bash
 EOF1
 
-chmod +x jupyter.script.sh
+chmod +x $JOBROOT/jupyter.script.sh
 
 <%- unless context.envscript.blank? -%>
 
-cat >> jupyter.script.sh <<EOF2
+cat >> $JOBROOT/jupyter.script.sh <<EOF2
 
 [ -f <%= context.envscript.to_s %> ] && source <%= context.envscript.to_s %>
 
@@ -61,7 +61,7 @@ EOF2
 <%- end -%>
 
 
-cat >> jupyter.script.sh <<EOF3
+cat >> $JOBROOT/jupyter.script.sh <<EOF3
 jupyter notebook \
            --ip='0.0.0.0' \
            --port=${MY_JUP_PORT} \
@@ -77,4 +77,4 @@ EOF3
 
 
 
-singularity exec $SING_GPU $SING_BINDS $container_image ./jupyter.script.sh  
+singularity exec $SING_GPU $SING_BINDS $container_image $JOBROOT/jupyter.script.sh
