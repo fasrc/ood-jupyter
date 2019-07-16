@@ -39,6 +39,9 @@ attributes:
   custom_reservation:
     label: Reservation
     widget: text_field
+  envscript:
+    label: script to be executed before launching jupyter
+    widget: text_field
   bc_account:
     label: "Slurm Account"
     help: "If you are not in multiple labs please leave this blank."
@@ -51,6 +54,7 @@ form:
   - custom_num_cores
   - custom_num_gpus
   - custom_time
+  - envscript
   - bc_email_on_started
   - custom_email_address
   - custom_reservation
