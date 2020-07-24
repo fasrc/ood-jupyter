@@ -18,7 +18,7 @@ attributes:
     value: 4
     min:   1
     step:  1
-    max:   256
+    max:   512
     widget: number_field
   custom_num_cores:
     label: Number of cores
