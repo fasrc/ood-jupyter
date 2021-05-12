@@ -8,8 +8,7 @@ It launches a Jupyter Notebook server within a batch job.
 ## Prerequisites
 This Batch Connect app requires the following software be available on **compute nodes** :
 
-- [Jupyter Notebook](http://jupyter.readthedocs.io/en/latest/) We currently deploy Jupyter 4.4.0 as singularity container.
-- [OpenSSL](https://www.openssl.org/) used to hash the Jupyter Notebook server password (tested with openssl-1.0.2k)
+- [Jupyter Notebook](http://jupyter.readthedocs.io/en/latest/) This is installed in the central location as part of Anaconda installation,
 
 ## Install
 
