@@ -78,6 +78,17 @@ attributes:
 
       As alternative, you can also load the modules you need after you are on the jupyter main page following [these instructions](https://docs.rc.fas.harvard.edu/kb/vdi-apps/#How_do_I_load_additional_modules_that_my_kernels_need).
       
+  extra_slurm:
+    label: Additional Slurm options
+    widget: text_field
+    help: |
+      additional slurm options (**long format option only**)<br>
+      Example :  --constraint=intel --exclusive
+      
+      Please make sure the options you select are compatible with other fields in the form.<br>Also, please make sure you use **long format option only**<br>(e.g. --nodelist=holy7c24502 instead of -w holy7c24502)
+   
+      If you are not familiar with Slurm we recommend to leave this blank.
+      
   bc_account:
     label: "Slurm Account (Optional)"
     value: '<%= OodSupport::User.new.group.name %>'
@@ -113,6 +124,7 @@ form:
   - envscript
   - modules
   - custom_reservation
+  - extra_slurm
   - bc_account
   - custom_email_address
   - bc_email_on_started
