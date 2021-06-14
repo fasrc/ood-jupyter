@@ -39,7 +39,14 @@ conda install -y -c conda-forge mamba_gator
 jupyter labextension install @mamba-org/gator-lab
 conda install -y nb_conda_kernels
 
+## TOC extension 
+jupyter labextension install @jupyterlab/toc
 
+## FOR FUTURE INSTALLATIONS (not compatible with current versions of things) 
+## https://github.com/aquirdTurtle/Collapsible_Headings
+
+
+## no longer usable. ... review in future reinstallations
 ##jupyter nbextension install nb_conda --py --sys-prefix 
 ##jupyter nbextension enable nb_conda --py --sys-prefix
 ##jupyter serverextension enable nb_conda --py --sys-prefix
