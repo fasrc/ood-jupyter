@@ -4,7 +4,7 @@ category: Interactive Apps
 subcategory: Servers
 role: batch_connect
 description: |
-  This app will launch [Jupyter] on a compute node on the [FAS-RC] cluster:
+  This app will launch [Jupyter] on a compute node on the [FASSE] cluster:
 
   [Jupyter]:  http://jupyter.org
-  [FAS-RC]: https://www.rc.fas.harvard.edu/about/cluster-architecture/
+  [FASSE]: https://docs.rc.fas.harvard.edu/kb/fasse
