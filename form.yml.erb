@@ -1,11 +1,11 @@
 ---
 title: "Jupyter notebook / Jupyterlab"
-cluster: "odyssey3"
+cluster: "fasse"
 attributes:
   bc_queue: 
-    value: "shared"
+    value: "fasse"
     help: |
-      Partition where to submit your job (--partition).<br>You can find here the [list of public partitions](https://docs.rc.fas.harvard.edu/kb/running-jobs/#Slurm_partitions).
+      Partition where to submit your job (--partition).<br>You can find here the [list of public FASSE partitions](https://docs.rc.fas.harvard.edu/kb/fasse/#SLURM_and_Partitions).
   jupyterlab_switch:
     widget: "check_box"
     value: 1
@@ -34,7 +34,7 @@ attributes:
     value: 0
     min:   0
     step:  1
-    max:   8
+    max:   4
     widget: number_field
     help: |
       Number of GPUs to allocate. Available only on GPU enabled partitions. (--gres=gpu:N)

@@ -3,7 +3,7 @@
 [[ $(type -t module) == "function" ]] && export -f module
 
 # Find available port to run server on
-port=$(find_port localhost 7000 11000 )
+port=$(find_port localhost 12000 14000 )
 
 # Generate SHA1 encrypted password (requires OpenSSL installed)
 SALT="$(create_passwd 16)"
