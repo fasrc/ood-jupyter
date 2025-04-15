@@ -12,7 +12,9 @@ This Batch Connect app requires the following software be available on **compute
 
 ## Install
 
-If you want to deploy this in your user development environment to make modifications, follow these instructions. 
+The master branch of this repo is automatically deployed by puppet to /var/www/ood/apps/sys/ on the ondemand nodes.
+
+If you want to deploy that in your user development environment to make modifications, follow these instructions. 
 
 ```sh
 # create the development folder if you still not have one
@@ -28,3 +30,7 @@ cd my_jupyter
 You can now make your preferred modifications and run your version of the app from the sandbox control panel under the
 *dev* menu on the ondemand dashboard
 
+## Contributing
+
+If you intend deploy your modified version as system wide app, you should commit your changes to a branch first.
+Please remember that any modification to the master branch goes live **immediately**. 
