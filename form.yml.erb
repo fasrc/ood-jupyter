@@ -37,14 +37,6 @@ attributes:
     widget: number_field
     help: |
       Number of GPUs to allocate. Available only on GPU enabled partitions. (--gres=gpu:N)
-  jupyter_version:
-    widget: select
-    label: "Jupyter Version"
-    help: |
-      Loading the Miniforge module for requested version
-    options:
-      - ["JupyterLab 4.4.0, Jupyter Notebook 7.4.0", "Miniforge3/24.11.3-fasrc02"]
-
   custom_time:
     label: "Allocated Time (expressed in MM , or HH:MM:SS , or DD-HH:MM)."
     value: "04:00:00"
@@ -112,7 +104,6 @@ form:
   - custom_num_cores
   - custom_num_gpus
   - custom_time
-  - jupyter_version
   - working_folder
   - envscript
   - modules
