@@ -3,11 +3,21 @@
 # Benchmark info
 echo "TIMING - Starting main script at: $(date)"
 
-# clean environment
 module purge
-
-# load jupyter/miniforge module
-module load <%= context.jupyter_version %>
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/n/helmod/apps/centos7/Core/Anaconda3/2021.05-jupyterood-fasrc01/x/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/n/helmod/apps/centos7/Core/Anaconda3/2021.05-jupyterood-fasrc01/x/etc/profile.d/conda.sh" ]; then
+        . "/n/helmod/apps/centos7/Core/Anaconda3/2021.05-jupyterood-fasrc01/x/etc/profile.d/conda.sh"
+    else
+        export PATH="/n/helmod/apps/centos7/Core/Anaconda3/2021.05-jupyterood-fasrc01/x/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 
 set -x
 ## if user instructed to source script prior to starting jupyter 
