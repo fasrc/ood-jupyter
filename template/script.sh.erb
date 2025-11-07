@@ -5,7 +5,8 @@ echo "TIMING - Starting main script at: $(date)"
 
 env -i CONFIG_FILE="${CONFIG_FILE}" HOME="${HOME}" PYTHONNOUSERSITE=1 bash --norc --noprofile <<"END"
 . /etc/profile
-export PATH="/n/helmod/apps/centos7/Core/Anaconda3/2021.05-jupyterood-fasrc01/x/bin:$PATH"
+# add jupyter to PATH without activating environment to avoid shell prompt modifications
+export PATH="/n/netscratch/rc_admin/Everyone/ood-jupyter-venv/bin:${PATH}"
 
 set -x
 ## if user instructed to source script prior to starting jupyter 
