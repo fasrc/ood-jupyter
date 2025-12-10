@@ -7,6 +7,8 @@ env -i CONFIG_FILE="${CONFIG_FILE}" HOME="${HOME}" PYTHONNOUSERSITE=1 bash --nor
 . /etc/profile
 # add jupyter to PATH without activating environment to avoid shell prompt modifications
 export PATH="/n/sw/jupyterlab/jupyterlab-4.5.0/bin:${PATH}"
+# Need conda for nb_conda_kernels (but don't put it in the user's PATH)
+export CONDA_EXE=/n/sw/Miniforge3-25.3.1-0/bin/conda
 
 set -x
 ## if user instructed to source script prior to starting jupyter 
