@@ -10,12 +10,12 @@ This Batch Connect app requires the following software be available on **compute
 
 - [Jupyter Notebook](http://jupyter.readthedocs.io/en/latest/) This is installed in the central location as part of Anaconda installation,
 
-It is assumed jupyter and nb_conda_kernels have been installed on the host in a Python virtual environment, e.g.:
+It is assumed jupyterlab, notebook and nb_conda_kernels have been installed on the host in a Python virtual environment, e.g.:
 
 ```
 # python3.12 -mvenv /n/sw/jupyterlab/jupyterlab-4.5.0
 # . /n/sw/jupyterlab/jupyterlab-4.5.0
-(jupyterlab-4.5.0) # pip install --no-cache-dir jupyterlab==4.5.0 git+https://github.com/anaconda/nb_conda_kernels@2.5.2
+(jupyterlab-4.5.0) # pip install --no-cache-dir jupyterlab==4.5.0 notebook==7.5.0 git+https://github.com/anaconda/nb_conda_kernels@2.5.2
 ```
 
 The CONDA_EXE environment varible must be set to the path of a conda executable in template/script.sh.erb.
