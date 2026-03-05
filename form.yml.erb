@@ -85,7 +85,7 @@ attributes:
       
       Please make sure the options you select are compatible with other fields in the form.<br>Also, please make sure you use **long format option only**<br>(e.g. --nodelist=holy7c24502 instead of -w holy7c24502)
    
-      If you are not familiar with Slurm we recommend to leave this blank.
+      If you are not familiar with Slurm we recommend leaving this blank.
       
   bc_account:
     label: "Slurm Account (Optional)"
@@ -96,6 +96,8 @@ attributes:
     label: 'Working Directory'
     widget: text_field
     value: '<%= OodSupport::User.new.home %>'
+    help: |
+      Path to a directory to launch Jupyter server in. Leave blank to use your home directory. **Entering a non-existent directory will cause the job to fail**
 
 form:
   - bc_queue
