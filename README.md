@@ -1,9 +1,29 @@
-# Jupyter Notebook for OOD Deployment at FAS-RC
+# Open OnDemand Jupyter notebook / Jupyterlab 
+<!-- Describe the app from a user's perspective. This is a simplied version of Overview -->
+## FASRC users
 
-This app has been derived by the template kindly provided by the OSC OpenOnDemand
-Team. [OSC](https://github.com/OSC/bc_example_jupyter)
+Jupyter notebook / Jupyterlab is an Open OnDemand app that launches Jupyter notebook or Jupyterlab  as an interactive session on a compute node. 
+ 
+It is designed for researchers who need a web-based interactive development environment for notebooks, code, and data. Its flexible interface allows users to configure and arrange workflows in data science, scientific computing, computational journalism, and machine learning.
 
-It launches a Jupyter Notebook server within a batch job.
+<!-- Link any relevant FASRC docs -->
+<!-- ### Using [app name] -->
+
+<!-- Link how to create Sandbox -->
+### Sandbox app
+
+For how to create a Sandbox app, see the [Developing your own app using Open
+OnDemand](https://docs.rc.fas.harvard.edu/kb/developing-apps-on-ood/)
+documentation.
+
+## Appverse overview
+
+> [!NOTE]  
+> This section is intended for sys-admins, developers, and power users.
+
+Jupyter notebook / Jupyterlab is an Open OnDemand app that launches Jupyter notebook or Jupyterlab  as an interactive session on  HPC clusters. 
+ 
+It is designed for researchers who need a web-based interactive development environment for notebooks, code, and data. Its flexible interface allows users to configure and arrange workflows in data science, scientific computing, computational journalism, and machine learning.
 
 ## Prerequisites
 This Batch Connect app requires the following software be available on **compute nodes** :
