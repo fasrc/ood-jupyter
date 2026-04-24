@@ -31,7 +31,7 @@ It is designed for researchers who need a web-based interactive development envi
 <!-- A screenshot helps deployers verify their installation and helps users understand what they'll get. -->
 <!-- Place images in a screenshots/ or docs/ directory. -->
 
-![Application running in browser](docs/screenshot.png)
+![Jupytern running in browser](images/jupyterscreenshot.png)
 
 ## Features
 
