@@ -26,26 +26,30 @@ Jupyter notebook / Jupyterlab is an Open OnDemand app that launches Jupyter note
 It is designed for researchers who need a web-based interactive development environment for notebooks, code, and data. Its flexible interface allows users to configure and arrange workflows in data science, scientific computing, computational journalism, and machine learning.
 - Upstream project: [Jupyter](https://jupyter.org/)
 
+This app uses the Batch Connect `basic` template with Slurm.
+
+- **Batch Connect template:** `basic`
+- **Scheduler:** Slurm
+
 ## Screenshots
 
 <!-- A screenshot helps deployers verify their installation and helps users understand what they'll get. -->
 <!-- Place images in a screenshots/ or docs/ directory. -->
 
-![Jupytern running in browser](images/jupyter_screenshot.png)
+![Jupyter running in browser](images/jupyter_screenshot.png)
 
 ## Features
 
 <!-- List the key capabilities specific to THIS OOD app (not the upstream software). -->
 
 - Launches Jupyter via web server on compute nodes
-- Supports GPU and CPUexecution
+- Supports GPU and CPU execution
 - Configurable partition, memory, CPU cores, GPU cards, and wall time via the launch form
 - Additional Slurm options pass-through (long format)
 - Reservation support and optional Slurm account
 - Email notification on job start
-- 
-- [Containerized via Singularity/Apptainer | Module-based]
-- [Any other notable features: multi-version support, custom dashboards, etc.]
+- Module-based
+- Jupyterlab / Jupyter Notebook toggle
 
 ## Requirements
 
@@ -54,22 +58,22 @@ It is designed for researchers who need a web-based interactive development envi
 <!-- Batch Connect: What must be installed on the compute nodes where jobs will run? -->
 <!-- Passenger: What must be installed on the OOD host? -->
 
-- [Software name] [version constraints, e.g., 4.2+]
-- [Runtime dependencies, e.g., Python 3.9+, CUDA 12.0+, Java 11+]
-- [Container runtime, e.g., Singularity 3.8+ / Apptainer 1.0+] (if containerized)
-- [Window manager, e.g., XFCE, Fluxbox] (if VNC-based Batch Connect app)
-- [Operating System, e.g., Rocky9/RHEL9, Ubuntu]
+- Centralized, read-only virtual environment (using Python 3.12 in this repo at time of writing)
+  -  environment has jupyterlab, notebook and nb_conda_kernels installed in it, e.g.:
+```
+# python3.12 -mvenv /n/sw/jupyterlab/jupyterlab-4.5.0
+# . /n/sw/jupyterlab/jupyterlab-4.5.0
+(jupyterlab-4.5.0) # pip install --no-cache-dir jupyterlab==4.5.0 notebook==7.5.0 git+https://github.com/anaconda/nb_conda_kernels@2.5.2
+```
+
+The CONDA_EXE environment varible must be set to the path of a conda executable in template/script.sh.erb.
+nb_conda_kernels will use the conda executable directly to search for additional kernels installed in the users' conda environments, but otherwise the conda environment containing the conda executable will not be used.
 
 ### Open OnDemand
 
-- Open OnDemand [minimum version, e.g., 3.0+]
-- [Scheduler: Slurm / PBS / LSF] (Batch Connect apps)
-- [Lmod or Environment Modules] (if using `module load`)
+- Open OnDemand v3.0+
+- [Slurm](https://slurm.schedmd.com/) job scheduler
 
-### Optional
-
-- [TurboVNC, VirtualGL] (for GPU-accelerated rendering)
-- [Database or dataset paths] (if the app needs reference data)
 
 ## App Installation
 
@@ -83,11 +87,9 @@ cd /var/www/ood/apps/sys
 
 # Widgets / Dashboards — check OOD docs for the correct path
 
-git clone https://github.com/YOUR-ORG/YOUR-APP.git
-cd YOUR-APP
+git clone https://github.com/fasrc/ood-jupyter.git
+cd ood-jupyter
 
-# Pin to a release (recommended)
-git checkout v1.0.0
 ```
 
 ### 2. Configure for your site
@@ -170,9 +172,14 @@ The app may need more time to start. Increase the connection timeout or check th
 
 <!-- Where has this app been deployed and verified? -->
 
-| Site | OOD Version | Scheduler | Status |
-|------|-------------|-----------|--------|
-| [Your Institution] | 3.1 | Slurm 23.02 | Tested |
+| Site | Operating System* | OOD Version | Scheduler | Status |
+|------|------------------|-------------|-----------|--------|
+| FASRC | Rocky 8.10 | 3.1 | Slurm 25.11 | Tested |
+| FASRC | Rocky 8.10 | 4.0 | Slurm 25.11 | Tested |
+| FASRC | Rocky 8.10 | 4.1 | Slurm 25.11 | Tested |
+
+> [!NOTE]
+> \*Operating system of compute nodes
 
 <!-- How can a deployer verify it works? -->
 
