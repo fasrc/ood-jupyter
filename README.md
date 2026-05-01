@@ -97,7 +97,20 @@ cd ood-jupyter
 <!-- Point deployers to the ONE place they need to edit. -->
 #### form.yml Attributes
 
-Edit `form.yml` and update these values for your cluster:
+Edit `form.yml.erb` and update these values for your cluster:
+
+| Attribute | Description | FASRC settings | Change to |
+|-----------|-------------|---------| -----------|
+| `cluster` | Target cluster ID | `odyssey3` | Your cluster name |
+| `jupyterlab_switch` | Start Jupterlab instead of Notebook | `1` | Your preference |
+| `bc_num_hours` | Maximum wall time (HH:MM:SS) | user-defined; default `04:00:00` | Your preferred default time |
+| `bc_num_cores` | Number of cores | user-defined; default `1` | Your preferred default number of cores |
+| `bc_queue` | Default scheduler partition | user-defined; default `shared` | Your preferred partition |
+| `extra_slurm` | Extra slurm option (long-format) | user-defined | Remove if using aother scheduler |
+| `custom_num_gpus` | Number of GPUs | user-defined; default `0` | Your preferred default number of GPUs |
+| `custom_memory_per_node` | Memory per node (GB) | user-defined; default: `4` | Your preferredmemory allocation |
+| `sas_version` | SAS module to load on compute node | `sas/9.4-fasrc01` | Your `sas` module |
+
 
 | Attribute | Description | Default |
 |-----------|-------------|---------|
