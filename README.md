@@ -102,24 +102,14 @@ Edit `form.yml.erb` and update these values for your cluster:
 | Attribute | Description | FASRC settings | Change to |
 |-----------|-------------|---------| -----------|
 | `cluster` | Target cluster ID | `odyssey3` | Your cluster name |
-| `jupyterlab_switch` | Start Jupterlab instead of Notebook | `1` | Your preference |
-| `bc_num_hours` | Maximum wall time (HH:MM:SS) | user-defined; default `04:00:00` | Your preferred default time |
-| `bc_num_cores` | Number of cores | user-defined; default `1` | Your preferred default number of cores |
 | `bc_queue` | Default scheduler partition | user-defined; default `shared` | Your preferred partition |
-| `extra_slurm` | Extra slurm option (long-format) | user-defined | Remove if using aother scheduler |
+| `jupyterlab_switch` | Start Jupterlab instead of Notebook | `1` | Your preference |
+| `custom_memory_per_node` | Memory per node (GB) | user-defined; default: `4` | Your preferred memory allocation |
+| `custom_num_cores` | Number of cores | user-defined; default `1` | Your preferred default number of cores |
 | `custom_num_gpus` | Number of GPUs | user-defined; default `0` | Your preferred default number of GPUs |
-| `custom_memory_per_node` | Memory per node (GB) | user-defined; default: `4` | Your preferredmemory allocation |
-| `sas_version` | SAS module to load on compute node | `sas/9.4-fasrc01` | Your `sas` module |
-
-
-| Attribute | Description | Default |
-|-----------|-------------|---------|
-| `cluster` | Target cluster ID | `"my_cluster"` |
-| `modules` | Module to load on compute node | `"software/1.0"` |
-| `bc_num_hours` | Maximum wall time (hours) | `4` |
-| `bc_num_slots` | Number of cores | `1` |
-| `partition` | Default scheduler partition | `"batch"` |
-| `memory` | Memory per job (GB) | `8` |
+| `custom_time` | Maximum wall time (HH:MM:SS) | user-defined; default `04:00:00` | Your preferred default time |
+| `extra_slurm` | Extra slurm option (long-format) | user-defined | Remove if using aother scheduler |
+| `bc_account` | Alternate slurm account to charge instead of user's primary group | user-defined | Remove if using aother scheduler |
 
 #### manifest.yml Attributes
 
@@ -129,15 +119,15 @@ Edit `manifest.yml` and update these values for your organization:
 |-----------|-----------|
 | `description` | Your cluster and your documentation |
 
-
 #### Environment variables
 
 <!-- Only include this section if your scripts expect variables beyond what OOD provides. -->
 
 | Variable | Required | Description |
 |----------|----------|-------------|
-| `SOFTWARE_DB_PATH` | Yes | Path to reference database directory |
-| `SINGULARITY_IMAGE` | No | Override default container image path |
+| `working_folder` | No | Override default (homedir) location to launch Jupyter Server in |
+| `envscript` | No | Script to run before starting Jupyter |
+| `modules` | No | Additional modules to load before starting Jupyter |
 
 <!-- Passenger apps: describe any config files, environment setup, or bundle install steps. -->
 <!-- If there are additional config files, list them too. -->
@@ -153,21 +143,17 @@ Edit `manifest.yml` and update these values for your organization:
 <!-- Passenger apps: document config files, environment variables, or database setup -->
 
 
-
-
-
-
 ### 3. Verify
 
 <!-- Batch Connect: -->
-No OOD restart is needed (Batch Connect apps are detected automatically). Visit your OOD dashboard and look for **[App Name]** under **Interactive Apps > [Category]**.
+No OOD restart is needed (Batch Connect apps are detected automatically). Visit your OOD dashboard and look for **Jupyter** under **Interactive Apps > Web Apps**.
 
 
 ## Troubleshooting
 
 ### Job starts but app doesn't appear (Batch Connect)
 
-1. Check the job's `output.log` in `~/ondemand/data/sys/YOUR-APP/`
+1. Check the job's `output.log` in `~/.fasrcood/data/sys/YOUR-APP/`
 2. Verify the module loads correctly: `module load software/1.0`
 3. For VNC apps, verify the window manager is installed: `which xfwm4`
 
@@ -206,9 +192,8 @@ To verify your installation:
 
 <!-- Be honest about what doesn't work or hasn't been tested. -->
 
-- [e.g., Multi-node jobs are not supported]
-- [e.g., GPU rendering requires VirtualGL, which is not configured by default]
-- [e.g., Only tested on RHEL 8; may not work on Ubuntu]
+- Multi-node jobs are not supported
+- Only tested on RHEL 8; may not work on other distributions
 
 ## Contributing
 
@@ -218,7 +203,7 @@ Contributions are welcome. To contribute:
 2. Create a feature branch (`git checkout -b feature/my-improvement`)
 3. Submit a pull request with a description of your changes
 
-For bugs or feature requests, [open an issue](https://github.com/YOUR-ORG/YOUR-APP/issues).
+For bugs or feature requests, [open an issue](https://github.com/fasrc/ood-jupyter/issues).
 
 This app is part of the [OOD Appverse](https://ondemand.connectci.org/affinity-groups/ood-appverse). Join the [Appverse Affinity Group](https://ondemand.connectci.org/affinity-groups/ood-appverse) to connect with other contributors.
 
@@ -226,7 +211,7 @@ This app is part of the [OOD Appverse](https://ondemand.connectci.org/affinity-g
 
 <!-- Credit upstream projects and any code you borrowed. -->
 
-- [Software Name](https://example.com) — the application launched by this OOD app
+- [Jupyter](https://jupyter.org/)— the application launched by this OOD app
 - [Open OnDemand](https://openondemand.org/) — the HPC portal framework
 
 ### Software Installation
@@ -243,17 +228,15 @@ If this documentation is too large or unwieldy, consider adding it to a separate
 
 ## License
 
-[MIT License](LICENSE)
-
-<!-- If dual-licensing, specify: -->
-<!-- Code: [MIT License](LICENSE) -->
-<!-- Documentation: [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/) -->
+[MIT License](https://github.com/fasrc/ood-sas/blob/main/LICENSE))
 
 ## Acknowledgments
 
-<!-- Funding, institutional support, collaborators. -->
-<!-- Replace with your own funding information. -->
+This work is supported by [FASRC](https://www.rc.fas.harvard.edu) at Harvard
+Univesity.
 
+
+deprecated below:
 ## Prerequisites
 This Batch Connect app requires the following software be available on **compute nodes** :
 
