@@ -97,7 +97,8 @@ cd ood-jupyter
 <!-- Point deployers to the ONE place they need to edit. -->
 #### form.yml Attributes
 
-Edit `form.yml.erb` and update these values for your cluster:
+Edit `form.yml.erb` and update these values for your cluster (in order as they
+appear at the bottom of [form.yml.erb](form.yml.erb)):
 EDIT: add all the attributes, maybe add an Optional/Required column here
 
 | Attribute | Description | FASRC settings | Change to |
