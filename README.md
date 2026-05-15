@@ -88,8 +88,6 @@ cd /var/www/ood/apps/sys
 git clone https://github.com/fasrc/ood-jupyter.git
 cd ood-jupyter
 
-# Widgets / Dashboards — check OOD docs for the correct path
-
 ```
 
 ### 2. Configure for your site
