@@ -77,7 +77,7 @@ nb_conda_kernels will use the conda executable directly to search for additional
 
 ## App Installation
 
-Please see the [References section](#software-installation) below for instructions on how to install the software that is launched by this App.
+Please see the [References section](#software-installation) below for instructions on how to install the software that is launched by this app.
 
 ### 1. Clone the repository
 
@@ -85,10 +85,10 @@ Please see the [References section](#software-installation) below for instructio
 # Batch Connect / Passenger apps:
 cd /var/www/ood/apps/sys
 
-# Widgets / Dashboards — check OOD docs for the correct path
-
 git clone https://github.com/fasrc/ood-jupyter.git
 cd ood-jupyter
+
+# Widgets / Dashboards — check OOD docs for the correct path
 
 ```
 
@@ -110,8 +110,14 @@ EDIT: add all the attributes, maybe add an Optional/Required column here
 | `custom_num_cores` | Number of cores | user-defined; default `1` | Your preferred default number of cores |
 | `custom_num_gpus` | Number of GPUs | user-defined; default `0` | Your preferred default number of GPUs |
 | `custom_time` | Maximum wall time (HH:MM:SS) | user-defined; default `04:00:00` | Your preferred default time |
+| `working_folder` | **Optional** Override default (homedir) location to launch Jupyter Server in | user-defined | |
+| `envscript` | **Optional** Script to run before starting Jupyter |user-defined | |
+| `modules` | **Optional** Additional modules to load before starting Jupyter |user-defined | |
+| `custom_reservation` | **Optional** Slurm reservation `--reservation` | user-defined | |
 | `extra_slurm` | Extra slurm option (long-format) | user-defined | Remove if using aother scheduler |
 | `bc_account` | Alternate slurm account to charge instead of user's primary group | user-defined | Remove if using aother scheduler |
+| `custom_email_address` | **Optional** email address for status notificationl used along with `bc_email_on_started` | user-defined | |
+| `bc_email_on_started` | **Optional** sends email to `custom_email_address` when job starts | user-defined | |
 
 #### manifest.yml Attributes
 
@@ -120,16 +126,6 @@ Edit `manifest.yml` and update these values for your organization:
 | Attribute | Change to |
 |-----------|-----------|
 | `description` | Your cluster and your documentation |
-
-#### Environment variables
-
-<!-- Only include this section if your scripts expect variables beyond what OOD provides. -->
-
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `working_folder` | No | Override default (homedir) location to launch Jupyter Server in |
-| `envscript` | No | Script to run before starting Jupyter |
-| `modules` | No | Additional modules to load before starting Jupyter |
 
 <!-- Passenger apps: describe any config files, environment setup, or bundle install steps. -->
 <!-- If there are additional config files, list them too. -->
@@ -155,9 +151,8 @@ No OOD restart is needed (Batch Connect apps are detected automatically). Visit 
 
 ### Job starts but app doesn't appear (Batch Connect)
 
-1. Check the job's `output.log` in `~/.fasrcood/data/sys/YOUR-APP/`
+1. Check the job's `output.log` in `~/.ondemand/data/sys/YOUR-APP/`
 2. Verify the module loads correctly: `module load software/1.0`
-3. For VNC apps, verify the window manager is installed: `which xfwm4`
 
 ### "Module not found" error
 
@@ -218,62 +213,16 @@ This app is part of the [OOD Appverse](https://ondemand.connectci.org/affinity-g
 
 ### Software Installation
 
-In this optional section you can include details of how to install the underlying software that is launched by this app. For example, include information about Blender if you are publishing a Blender Batch Connect App. You could potentially include the following:
-
-* Steps on how to install the software from source, including critical dependencies
-* Steps on how to install and enable a Python environment with the software
-* A link to container orchestration files that can reproduce a container from scratch
-* A link to a pre-existing container that can be downloaded
-* Some general info on how to obtain and configure the software, especially if it is distributed as binaries and/or is commercial or proprietary software
-
-If this documentation is too large or unwieldy, consider adding it to a separate markdown file and linking it here.
+* [Jupyter Installation Guide](https://jupyter.org/install)
 
 ## License
 
-[MIT License](https://github.com/fasrc/ood-sas/blob/main/LICENSE))
+[MIT License](https://github.com/fasrc/ood-jupyter/blob/main/LICENSE.txt))
 
 ## Acknowledgments
 
 This work is supported by [FASRC](https://www.rc.fas.harvard.edu) at Harvard
 Univesity.
-
-
-deprecated below:
-## Prerequisites
-This Batch Connect app requires the following software be available on **compute nodes** :
-
-- [Jupyter Notebook](http://jupyter.readthedocs.io/en/latest/) This is installed in the central location as part of Anaconda installation,
-
-It is assumed jupyterlab, notebook and nb_conda_kernels have been installed on the host in a Python virtual environment, e.g.:
-
-```
-# python3.12 -mvenv /n/sw/jupyterlab/jupyterlab-4.5.0
-# . /n/sw/jupyterlab/jupyterlab-4.5.0
-(jupyterlab-4.5.0) # pip install --no-cache-dir jupyterlab==4.5.0 notebook==7.5.0 git+https://github.com/anaconda/nb_conda_kernels@2.5.2
-```
-
-The CONDA_EXE environment varible must be set to the path of a conda executable in template/script.sh.erb.
-nb_conda_kernels will use the conda executable directly to search for additional kernels installed in the users' conda environments, but otherwise the conda environment containing the conda executable will not be used.
-
-## Install
-
-The master branch of this repo is automatically deployed by puppet to /var/www/ood/apps/sys/ on the ondemand nodes.
-
-If you want to deploy that in your user development environment to make modifications, follow these instructions. 
-
-```sh
-# create the development folder if you still not have one
-mkdir -pv ~/fasrc/dev/
-cd ~/fasrc/dev/
-
-# clone the repository in a subfolder for your version of the app
-git clone git@gitlab-int.rc.fas.harvard.edu:openondemand/jupyter-app.git my_jupyter
-
-# Change the working directory to this new directory
-cd my_jupyter
-```
-You can now make your preferred modifications and run your version of the app from the sandbox control panel under the
-*dev* menu on the ondemand dashboard
 
 ## Contributing
 
