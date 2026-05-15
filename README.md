@@ -217,7 +217,7 @@ This app is part of the [OOD Appverse](https://ondemand.connectci.org/affinity-g
 
 ## License
 
-[MIT License](https://github.com/fasrc/ood-jupyter/blob/main/LICENSE.txt))
+[MIT License](LICENSE.txt)
 
 ## Acknowledgments
 
