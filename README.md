@@ -66,7 +66,7 @@ This app uses the Batch Connect `basic` template with Slurm.
 (jupyterlab-4.5.0) # pip install --no-cache-dir jupyterlab==4.5.0 notebook==7.5.0 git+https://github.com/anaconda/nb_conda_kernels@2.5.2
 ```
 
-The CONDA_EXE environment varible must be set to the path of a conda executable in template/script.sh.erb.
+The CONDA_EXE environment varible must be set to the path of a conda executable in [template/script.sh.erb](template/script.sh.erb).  
 nb_conda_kernels will use the conda executable directly to search for additional kernels installed in the users' conda environments, but otherwise the conda environment containing the conda executable will not be used.
 
 ### Open OnDemand
