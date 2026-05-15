@@ -162,6 +162,14 @@ The app may need more time to start. Increase the connection timeout or check th
 
 <!-- Add real issues you've encountered during testing. -->
 
+### Jupyter notebook VDI session is terminated right after it starts
+This problem is common when there is a `conda initialize` section in the user's .bashrc file located in their home directory. The `conda initialize` section was added when, at some point, the user ran the command `conda init`. Instead of using conda init, we recommend `source activate environment_name`.  
+
+To solve this problem, delete or comment out the `conda initialize` section of your .bashrc and create a new Jupyter notebook VDI session.
+
+### Jupyter notebook/JupyterLab VDI session starts but does not display a ‘Connect to Jupyter’ button
+If this problem occurs, you may see an error, jupyter: command not found, in the session's `output.log`.  
+To solve this problem, delete the line auto_activate_base: false in the file `~/.condarc`.
 ## Testing
 
 <!-- Where has this app been deployed and verified? -->
