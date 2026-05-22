@@ -93,11 +93,10 @@ cd ood-jupyter
 ### 2. Configure for your site
 
 <!-- Point deployers to the ONE place they need to edit. -->
-#### form.yml Attributes
+#### form.yml.erb Attributes
 
 Edit `form.yml.erb` and update these values for your cluster (in order as they
 appear at the bottom of [form.yml.erb](form.yml.erb)):
-EDIT: add all the attributes, maybe add an Optional/Required column here
 
 | Attribute | Description | FASRC settings | Change to |
 |-----------|-------------|---------| -----------|
@@ -112,8 +111,8 @@ EDIT: add all the attributes, maybe add an Optional/Required column here
 | `envscript` | **Optional** Script to run before starting Jupyter |user-defined | |
 | `modules` | **Optional** Additional modules to load before starting Jupyter |user-defined | |
 | `custom_reservation` | **Optional** Slurm reservation `--reservation` | user-defined | |
-| `extra_slurm` | Extra slurm option (long-format) | user-defined | Remove if using aother scheduler |
-| `bc_account` | Alternate slurm account to charge instead of user's primary group | user-defined | Remove if using aother scheduler |
+| `extra_slurm` | **Optional** Extra slurm option (long-format) | user-defined | Remove if using aother scheduler |
+| `bc_account` | **Optional** Alternate slurm account to charge instead of user's primary group | user-defined | Remove if using aother scheduler |
 | `custom_email_address` | **Optional** email address for status notificationl used along with `bc_email_on_started` | user-defined | |
 | `bc_email_on_started` | **Optional** sends email to `custom_email_address` when job starts | user-defined | |
 
