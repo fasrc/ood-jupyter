@@ -189,7 +189,6 @@ To verify your installation:
 
 1. Launch the app from the OOD dashboard with default settings
 2. Confirm the application loads in the browser
-3. [Any app-specific verification, e.g., "run a small test job"]
 
 ## Known Limitations
 
