@@ -227,8 +227,3 @@ This app is part of the [OOD Appverse](https://ondemand.connectci.org/affinity-g
 
 This work is supported by [FASRC](https://www.rc.fas.harvard.edu) at Harvard
 Univesity.
-
-## Contributing
-
-If you intend deploy your modified version as system wide app, you should commit your changes to a branch first.
-Please remember that any modification to the master branch goes live **immediately**. 
