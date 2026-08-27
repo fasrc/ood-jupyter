@@ -50,6 +50,8 @@ This app uses the Batch Connect `basic` template with Slurm.
 - Email notification on job start
 - Module-based
 - Jupyterlab / Jupyter Notebook toggle
+- AI chat sidebar (Jupyter AI) with agent support for Claude Code and Codex via ACP
+- Git integration in JupyterLab (jupyterlab-git)
 
 ## Requirements
 
@@ -59,15 +61,58 @@ This app uses the Batch Connect `basic` template with Slurm.
 <!-- Passenger: What must be installed on the OOD host? -->
 
 - Centralized, read-only virtual environment (using Python 3.12 in this repo at time of writing)
-  -  environment has jupyterlab, notebook and nb_conda_kernels installed in it, e.g.:
 ```
-# python3.12 -mvenv /n/sw/jupyterlab/jupyterlab-4.5.0
-# . /n/sw/jupyterlab/jupyterlab-4.5.0
-(jupyterlab-4.5.0) # pip install --no-cache-dir jupyterlab==4.5.0 notebook==7.5.0 git+https://github.com/anaconda/nb_conda_kernels@2.5.2
+# python3.12 -mvenv /n/sw/jupyterlab/jupyterlab-4.6.3
+# . /n/sw/jupyterlab/jupyterlab-4.6.3/bin/activate
+(jupyterlab-4.6.3) # ./jupyter-build.sh
 ```
+
+`jupyter-build.sh` installs the pinned packages from `requirements.txt` (generated from
+`requirements.in` via `pip-compile`from [pip-tools](https://pypi.org/project/pip-tools/)),
+installs a local Node.js via `nodeenv`, and installs the [ACP](https://agentclientprotocol.com/)
+adapters that let Jupyter AI use Claude Code and Codex as chat agents.
+
+To update dependencies, edit `requirements.in` and regenerate `requirements.txt` with `pip-compile`.
 
 The CONDA_EXE environment varible must be set to the path of a conda executable in [template/script.sh.erb](template/script.sh.erb).  
 nb_conda_kernels will use the conda executable directly to search for additional kernels installed in the users' conda environments, but otherwise the conda environment containing the conda executable will not be used.
+
+### Server environment vs. kernel environment
+
+This app runs Jupyter out of a single centralized, read-only virtual environment (the
+**server environment**), while notebook code runs in whichever kernel the user selects —
+typically a package in one of their own conda environments, discovered by nb_conda_kernels
+(the **kernel environment**). These are two separate Python installations, and a package
+generally belongs in exactly one of them.
+
+| Goes in the server environment | Goes in the user's kernel environment |
+| --- | --- |
+| JupyterLab / Notebook itself | `ipykernel` (required for the env to appear as a kernel) |
+| Server extensions (`jupyter-ai`, `jupyter-resource-usage`, `jupyterlab-git`) | Libraries imported by notebook code (`numpy`, `pandas`, `torch`, ...) |
+| Frontend/labextension halves of widget packages (`jupyterlab_widgets`, `widgetsnbextension`) | Python halves of widget packages (`ipywidgets`, `ipympl`, `plotly`, ...) |
+
+Users cannot install into the server environment — it is read-only, and
+`PYTHONNOUSERSITE=1` is set in [template/script.sh.erb](template/script.sh.erb) so that
+packages in `~/.local/lib/pythonX.Y/site-packages` cannot shadow it either.
+
+Two consequences worth knowing:
+
+- **`pip install` in a notebook or terminal does not add server extensions.** Installing a
+  labextension into a kernel environment has no effect, because the server never looks
+  there. Requests for new extensions have to go through `requirements.in` and a rebuild of
+  the centralized environment.
+- **Widget packages are split across both environments.** The classic symptom is a widget
+  rendering as `Loading widget...` or as bare text: `ipywidgets` is missing from the
+  *kernel* environment, or the matching `jupyterlab_widgets` is missing from the *server*
+  environment. The server side is already covered by `requirements.in`; users add the
+  kernel side themselves, e.g.:
+
+  ```bash
+  conda install -n myenv ipykernel ipywidgets
+  ```
+
+Anything imported by a notebook belongs to the user's environment. Anything that changes
+how JupyterLab itself behaves belongs to `requirements.in`.
 
 ### Open OnDemand
 
@@ -214,6 +259,8 @@ This app is part of the [OOD Appverse](https://ondemand.connectci.org/affinity-g
 
 - [Jupyter](https://jupyter.org/)— the application launched by this OOD app
 - [Open OnDemand](https://openondemand.org/) — the HPC portal framework
+- [Jupyter AI](https://jupyter-ai.readthedocs.io/) — AI chat and ACP agent integration
+- [Agent Client Protocol](https://agentclientprotocol.com/) — protocol used to connect Claude Code/Codex as chat agents
 
 ### Software Installation
 

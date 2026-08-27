@@ -1,0 +1,42 @@
+jupyterlab
+notebook
+
+git+https://github.com/anaconda/nb_conda_kernels@2.5.2
+
+# needed to install npm for node packages @agentclientprotocol/claude-agent-acp (for claude)
+# and @agentclientprotocol/codex-acp (for codex)
+nodeenv
+
+#### JupyterLab/Notebook Extensions ####
+
+jupyter-ai
+
+# https://github.com/jupyterlab-contrib/jupyter-archive
+jupyter-archive
+
+# https://github.com/jupyter-server/jupyter-resource-usage
+jupyter-resource-usage
+
+# https://github.com/jupyterhub/jupyter-server-proxy
+jupyter-server-proxy
+
+# https://github.com/jupyterlab/jupyterlab-git
+jupyterlab-git
+
+# https://github.com/rapidsai/jupyterlab-nvdashboard
+jupyterlab-nvdashboard
+
+# https://github.com/deshaw/jupyterlab-execute-time
+jupyterlab_execute_time
+
+# https://github.com/jupytext/jupytext
+jupytext
+
+# jupyterlab / notebook extensions needed to support ipywidgets in user kernels
+# https://ipywidgets.readthedocs.io/en/stable/user_install.html
+jupyterlab_widgets
+widgetsnbextension
+
+# https://github.com/jupyterlab-contrib/jupyterlab-variableInspector
+# currently not working: https://github.com/jupyterlab-contrib/jupyterlab-variableInspector/issues/355
+#lckr_jupyterlab_variableinspector
