@@ -189,6 +189,8 @@ To verify your installation:
 1. Launch the app from the OOD dashboard with default settings
 2. Confirm the application loads in the browser
 
+For a self-contained reproducer of the nested Jupyter Chat encoded-slash WebSocket failure discussed in issue triage, see [reproducers/jupyter-chat-encoded-slash/](reproducers/jupyter-chat-encoded-slash/).
+
 ## Known Limitations
 
 <!-- Be honest about what doesn't work or hasn't been tested. -->
