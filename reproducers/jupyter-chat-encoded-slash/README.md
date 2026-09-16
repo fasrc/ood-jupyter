@@ -36,6 +36,7 @@ This is distinct from `jupyter-ai-acp-client` issue #109, which involves ACP HTT
 ## Files
 
 - `Dockerfile` - single-container Apache + Jupyter reproducer
+- `requirements.lock` - fully pinned Python dependency set for deterministic rebuilds
 - `run.sh` - build and start the reproducer
 - `probe.sh` - run the automated Apache/Jupyter regression probe
 - `teardown.sh` - stop and remove the container
@@ -50,6 +51,8 @@ From this directory:
 ./run.sh
 ./probe.sh
 ```
+
+`run.sh` publishes Apache on `127.0.0.1:8080` by default so the intentionally local-only, unauthenticated Jupyter server is not exposed beyond the host.
 
 Then open:
 

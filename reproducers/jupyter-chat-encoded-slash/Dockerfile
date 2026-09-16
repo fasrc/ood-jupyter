@@ -12,11 +12,9 @@ RUN apt-get update \
 RUN a2dismod mpm_event >/dev/null 2>&1 || true \
     && a2enmod mpm_prefork proxy proxy_http proxy_wstunnel rewrite headers >/dev/null
 
-RUN pip install \
-      jupyterlab==4.6.3 \
-      jupyter-server==2.21.1 \
-      jupyter-ai==3.2.0 \
-      jupyterlab-chat==0.25.0 \
+COPY requirements.lock /tmp/requirements.lock
+
+RUN pip install --requirement /tmp/requirements.lock \
     && python - <<'PY'
 import importlib.metadata as md
 import importlib.util
@@ -40,7 +38,7 @@ WORKDIR /opt/reproducer
 RUN mkdir -p /work /var/run/apache2 /var/lock/apache2
 
 COPY jupyter/ jupyter/
-COPY entrypoint.sh run.sh probe.sh teardown.sh validate.sh probe.py issue-jupyterlab-chat.md README.md ./
+COPY entrypoint.sh run.sh probe.sh teardown.sh validate.sh probe.py issue-jupyterlab-chat.md README.md requirements.lock ./
 
 EXPOSE 80
 ENTRYPOINT ["/opt/reproducer/entrypoint.sh"]

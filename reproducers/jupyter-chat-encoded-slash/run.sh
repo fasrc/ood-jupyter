@@ -24,7 +24,7 @@ docker build -t "${IMAGE_NAME}" "${SCRIPT_DIR}"
 docker rm -f "${CONTAINER_NAME}" >/dev/null 2>&1 || true
 docker run -d \
   --name "${CONTAINER_NAME}" \
-  -p "${PUBLISHED_PORT}:80" \
+  -p "127.0.0.1:${PUBLISHED_PORT}:80" \
   -e ALLOW_ENCODED_SLASHES="${ALLOW_ENCODED_SLASHES}" \
   "${IMAGE_NAME}" >/dev/null
 
