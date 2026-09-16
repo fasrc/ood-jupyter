@@ -72,7 +72,7 @@ This app uses the Batch Connect `basic` template with Slurm.
 installs a local Node.js via `nodeenv`, and installs the [ACP](https://agentclientprotocol.com/)
 adapters that let Jupyter AI use Claude Code and Codex as chat agents.
 
-To update dependencies, edit `requirements.in` and regenerate `requirements.txt` with `pip-compile`.
+To update dependencies, edit `requirements.in` and regenerate `requirements.txt` with `SKIP_JUPYTER_BUILDER=1 pip-compile`.
 
 The CONDA_EXE environment varible must be set to the path of a conda executable in [template/script.sh.erb](template/script.sh.erb).  
 nb_conda_kernels will use the conda executable directly to search for additional kernels installed in the users' conda environments, but otherwise the conda environment containing the conda executable will not be used.

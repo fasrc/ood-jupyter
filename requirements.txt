@@ -277,8 +277,9 @@ jupyterlab-ai-commands==0.4.0
     # via jupyter-ai-tools
 jupyterlab-cell-input-footer==0.3.2
     # via jupyterlab-diff
-jupyterlab-chat==0.25.0
+jupyterlab-chat @ git+https://github.com/fasrc/jupyter-chat@copilot/no-encoded-slashes#subdirectory=python/jupyterlab-chat
     # via
+    #   -r requirements.in
     #   jupyter-ai
     #   jupyter-ai-acp-client
     #   jupyter-ai-chat-commands
@@ -359,8 +360,6 @@ nbformat==5.11.1
     #   nbdime
 nest-asyncio2==1.7.2
     # via ipykernel
-nodeenv==1.10.0
-    # via -r requirements.in
 notebook==7.6.2
     # via -r requirements.in
 notebook-shim==0.2.4
