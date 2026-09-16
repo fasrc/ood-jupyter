@@ -45,23 +45,29 @@ def recv_until(sock: socket.socket, marker: bytes) -> bytes:
     return data
 
 
+def recv_exact(sock: socket.socket, size: int, initial: bytes = b"") -> bytes:
+    data = initial
+    while len(data) < size:
+        chunk = sock.recv(size - len(data))
+        if not chunk:
+            raise RuntimeError(f"Expected {size} bytes but received only {len(data)}")
+        data += chunk
+    return data
+
+
 def read_frame(sock: socket.socket) -> tuple[str, str]:
     sock.settimeout(5)
-    header = sock.recv(2)
-    if len(header) < 2:
-        raise RuntimeError("WebSocket upgraded but no frame header was received")
+    header = recv_exact(sock, 2)
     first, second = header
     opcode = first & 0x0F
     masked = bool(second & 0x80)
     length = second & 0x7F
     if length == 126:
-        length = int.from_bytes(sock.recv(2), "big")
+        length = int.from_bytes(recv_exact(sock, 2), "big")
     elif length == 127:
-        length = int.from_bytes(sock.recv(8), "big")
-    mask = sock.recv(4) if masked else b""
-    payload = b""
-    while len(payload) < length:
-        payload += sock.recv(length - len(payload))
+        length = int.from_bytes(recv_exact(sock, 8), "big")
+    mask = recv_exact(sock, 4) if masked else b""
+    payload = recv_exact(sock, length) if length else b""
     if masked:
         payload = bytes(b ^ mask[i % 4] for i, b in enumerate(payload))
     text = payload.decode("utf-8", errors="replace")
@@ -71,6 +77,8 @@ def read_frame(sock: socket.socket) -> tuple[str, str]:
 
 def websocket_probe(base_url: str, path: str, label: str) -> ProbeResult:
     parsed = urlparse(base_url)
+    if parsed.scheme == "https":
+        raise ValueError("https base URLs are not supported by this probe; use an http URL through Apache")
     host = parsed.hostname or "127.0.0.1"
     port = parsed.port or (443 if parsed.scheme == "https" else 80)
     request_path = parsed.path.rstrip("/") + path
