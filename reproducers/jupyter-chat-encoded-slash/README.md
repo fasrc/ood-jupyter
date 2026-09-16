@@ -54,6 +54,20 @@ From this directory:
 
 `run.sh` publishes Apache on `127.0.0.1:8080` by default so the intentionally local-only, unauthenticated Jupyter server is not exposed beyond the host.
 
+## Dev Container / Codespaces
+
+This repository now includes a repo-level Dev Container at `/home/runner/work/ood-jupyter/ood-jupyter/.devcontainer/devcontainer.json`.
+
+- It builds directly from `/home/runner/work/ood-jupyter/ood-jupyter/reproducers/jupyter-chat-encoded-slash/Dockerfile`.
+- It runs the reproducer container automatically on start by using the Dockerfile's existing entrypoint.
+- In a GitHub Codespace, forward port `80` and open:
+
+```text
+/node/jupyter/8888/lab
+```
+
+If you change the reproducer Dockerfile or locked dependencies, rebuild the Dev Container so the Codespace uses the updated image.
+
 Then open:
 
 ```text

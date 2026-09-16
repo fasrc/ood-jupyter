@@ -1,0 +1,34 @@
+{
+  "name": "ood-jupyter chat reproducer",
+  "build": {
+    "dockerFile": "../reproducers/jupyter-chat-encoded-slash/Dockerfile",
+    "context": "../reproducers/jupyter-chat-encoded-slash"
+  },
+  "overrideCommand": false,
+  "remoteUser": "root",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "forwardPorts": [
+    80
+  ],
+  "portsAttributes": {
+    "80": {
+      "label": "Jupyter Chat encoded-slash reproducer",
+      "onAutoForward": "notify",
+      "protocol": "http"
+    }
+  },
+  "postAttachCommand": "printf '\\nReproducer running. Open the forwarded port 80 at /node/jupyter/8888/lab\\n\\n'",
+  "customizations": {
+    "codespaces": {
+      "openFiles": [
+        "reproducers/jupyter-chat-encoded-slash/README.md",
+        "reproducers/jupyter-chat-encoded-slash/issue-jupyterlab-chat.md"
+      ]
+    },
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  }
+}
