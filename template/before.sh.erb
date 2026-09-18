@@ -20,7 +20,6 @@ export WORKING_FOLDER=<%= context.working_folder %>
 export CONFIG_FILE="${PWD}/config.py"
 
 # Generate Jupyter configuration file with secure file permissions
-# and have jupyter-server-mcp listen on an OS-chosen open port (on localhost)
 (
 umask 077
 cat > "${CONFIG_FILE}" << EOL
@@ -35,7 +34,6 @@ c.ServerApp.root_dir = '${WORKING_FOLDER}'
 c.ServerApp.disable_check_xsrf = True
 c.ServerApp.kernel_spec_manager_class = 'nb_conda_kernels.CondaKernelSpecManager'
 c.ServerApp.terminado_settings = { 'shell_command': ['/bin/bash'] }
-c.MCPExtensionApp.mcp_port = 0
 EOL
 )
 

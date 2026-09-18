@@ -3,18 +3,13 @@ notebook
 
 git+https://github.com/anaconda/nb_conda_kernels@2.5.2
 
+# needed to install npm for node packages @agentclientprotocol/claude-agent-acp (for claude)
+# and @agentclientprotocol/codex-acp (for codex)
+nodeenv
+
 #### JupyterLab/Notebook Extensions ####
 
 jupyter-ai
-
-# in the requirements.txt, manually pin jupyterlab-chat to work around bug that
-# prevents chats from working outside jupyter server root directory when
-# (apparently) JupyterLab is behind Apache HTTPD reverse proxy with default
-# AllowEncodedSlashes false, likely introduced in:
-# https://github.com/jupyterlab/jupyter-chat/pull/530
-#
-# Requires setting environment variable SKIP_JUPYTER_BUILDER=1 when using pip-compile
-git+https://github.com/fasrc/jupyter-chat@copilot/no-encoded-slashes#subdirectory=python/jupyterlab-chat
 
 # https://github.com/jupyterlab-contrib/jupyter-archive
 jupyter-archive
