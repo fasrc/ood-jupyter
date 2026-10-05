@@ -1,4 +1,3 @@
-
 # Export the module function if it exists
 [[ $(type -t module) == "function" ]] && export -f module
 
@@ -35,7 +34,10 @@ c.ServerApp.root_dir = '${WORKING_FOLDER}'
 c.ServerApp.disable_check_xsrf = True
 c.ServerApp.kernel_spec_manager_class = 'nb_conda_kernels.CondaKernelSpecManager'
 c.ServerApp.terminado_settings = { 'shell_command': ['/bin/bash'] }
-c.MCPExtensionApp.mcp_port = 0
+#c.MCPExtensionApp.mcp_port = 0 # unnecessary in network namespace
 EOL
 )
 
+# Private, node-local state shared by script.sh and after.sh.
+export OOD_NETNS_DIR=$(mktemp -d)
+mkfifo "${OOD_NETNS_DIR}/start"
