@@ -1,0 +1,1 @@
+jupyter-server-mcp @ git+https://github.com/fasrc/jupyter-server-mcp@724a86a003d0af6c0d5b5ded25c4c90caecfebb4

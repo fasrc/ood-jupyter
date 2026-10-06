@@ -2,7 +2,7 @@
 
 set -o errexit
 
-python -mpip install --no-cache-dir -r requirements.txt
+python -mpip install --no-cache-dir --no-deps -r requirements.txt
 nodeenv --python-virtualenv
 
 # ACP adapters for Claude Code and Codex

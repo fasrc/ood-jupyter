@@ -35,7 +35,7 @@ c.ServerApp.root_dir = '${WORKING_FOLDER}'
 c.ServerApp.disable_check_xsrf = True
 c.ServerApp.kernel_spec_manager_class = 'nb_conda_kernels.CondaKernelSpecManager'
 c.ServerApp.terminado_settings = { 'shell_command': ['/bin/bash'] }
-c.MCPExtensionApp.mcp_port = 0
+c.MCPExtensionApp.mcp_uds = '$(mktemp -d)/mcp.sock'
 EOL
 )
 
