@@ -20,7 +20,10 @@ export WORKING_FOLDER=<%= context.working_folder %>
 export CONFIG_FILE="${PWD}/config.py"
 
 # Generate Jupyter configuration file with secure file permissions
-# and have jupyter-server-mcp listen on an OS-chosen open port (on localhost)
+# and have jupyter-server-mcp listen on a private unix domain socket.
+# jupyter-ai's default MCP config only knows about mcp_port, so point
+# AI agents at the socket via the stdio proxy.
+MCP_UDS="$(mktemp -d)/mcp.sock"
 (
 umask 077
 cat > "${CONFIG_FILE}" << EOL
@@ -35,7 +38,13 @@ c.ServerApp.root_dir = '${WORKING_FOLDER}'
 c.ServerApp.disable_check_xsrf = True
 c.ServerApp.kernel_spec_manager_class = 'nb_conda_kernels.CondaKernelSpecManager'
 c.ServerApp.terminado_settings = { 'shell_command': ['/bin/bash'] }
-c.MCPExtensionApp.mcp_uds = '$(mktemp -d)/mcp.sock'
+c.MCPExtensionApp.mcp_uds = '${MCP_UDS}'
+import os, sys
+c.PersonaManager.builtin_mcp_servers = [{
+    'name': 'Jupyter MCP Server',
+    'command': os.path.join(sys.prefix, 'bin', 'jupyter-server-mcp-proxy'),
+    'args': ['--uds', '${MCP_UDS}'],
+}]
 EOL
 )
 
