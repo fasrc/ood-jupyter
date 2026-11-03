@@ -73,7 +73,7 @@ adapters that let Jupyter AI use Claude Code and Codex as chat agents.
 
 To update dependencies, edit `requirements.in` and/or `overrides.txt`, and regenerate requirements.txt using [uv](https://pypi.org/project/uv/):
 ```
-uv pip compile --override overrides.txt -o requirements.txt requirements.in  
+uv pip compile --upgrade --override overrides.txt -o requirements.txt requirements.in  
 ```
 
 The CONDA_EXE environment varible must be set to the path of a conda executable in [template/script.sh.erb](template/script.sh.erb).  
