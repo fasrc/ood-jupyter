@@ -1,5 +1,20 @@
 #!/usr/bin/env bash
 
+# site-specific output job information
+echo "======================= Job information ======================="
+echo "Session ID      <%= session.id %>"
+echo "Slurm job ID    ${SLURM_JOBID}"
+echo "Partition       ${SLURM_JOB_PARTITION}"
+echo "Node            ${SLURM_JOB_NODELIST}"
+echo "Cores           ${SLURM_CPUS_PER_TASK}"
+echo "Memory (MB)     ${SLURM_MEM_PER_NODE}"
+echo "GPUs            <%= context.custom_num_gpus %>"
+echo "JupyterLab      <%= context.jupyterlab_switch %>"
+echo "Working folder  <%= context.working_folder %>"
+echo "Script          <%= context.envscript %>"
+echo "Extra modules   <%= context.modules %>"
+echo "==============================================================="
+
 # Benchmark info
 echo "TIMING - Starting main script at: $(date)"
 
