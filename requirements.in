@@ -9,7 +9,7 @@ nodeenv
 
 #### JupyterLab/Notebook Extensions ####
 
-jupyterlab==4.6.5
+jupyterlab==4.6.6
 jupyter-ai==3.2.0
 
 # https://github.com/jupyterlab-contrib/jupyter-archive
