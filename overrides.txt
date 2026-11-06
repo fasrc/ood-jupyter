@@ -1,0 +1,3 @@
+jupyter-server-mcp @ git+https://github.com/fasrc/jupyter-server-mcp@4085f08cf6f60c5ad84f149f39f7d7ddfbcdf11c
+# Work around double-encoding with AllowEncodedSlashes NoDecode affecting Apache httpd < 2.4.57 on OOD web servers
+jupyterlab-chat @ git+https://github.com/fasrc/jupyter-chat@a8af16931fd5823f7d94aa34796eafd8c44565dd#subdirectory=python/jupyterlab-chat
