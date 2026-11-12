@@ -1,5 +1,5 @@
 <%-
-  cluster_name = `uname -n`.include?("fasse") ? "fasse" : "cannon"
+  cluster_name = `uname -n`.include?("fasse") ? "fasse" : "odyssey3"
   max_gpus = cluster_name == "fasse" ? 4 : 8
   default_partition = cluster_name == "fasse" ? "fasse" : "sapphire,shared"
 -%>
