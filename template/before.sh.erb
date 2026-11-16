@@ -13,6 +13,22 @@ PASSWORD_SHA1="$(echo -n "${password}${SALT}" | openssl dgst -sha1 | awk '{print
 export WORKING_FOLDER=$HOME
 <%- unless context.working_folder.blank? -%>
 export WORKING_FOLDER=<%= context.working_folder %>
+if [ ! -d "${WORKING_FOLDER}" ] || [ ! -r "${WORKING_FOLDER}" ]
+then
+  printf 'ERROR: working directory does not exist or is not readable: %s\n' "${WORKING_FOLDER}"
+fi
+<%- end -%>
+
+unset ENVSCRIPT
+<%- unless context.envscript.blank? -%>
+export ENVSCRIPT='<%= context.envscript.to_s %>'
+if [ -f "${ENVSCRIPT}" ] && [ -r "${ENVSCRIPT}" ]
+then
+  source '<%= context.envscript.to_s %>'
+else
+  printf 'Script to be executed before launching jupyter does not exist or is not readable: %s\n' '<%= context.envscript.to_s %>'
+  exit 1
+fi
 <%- end -%>
 
 # The `$CONFIG_FILE` environment variable is exported as it is used in the main
